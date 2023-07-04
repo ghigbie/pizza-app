@@ -23,6 +23,6 @@ There is a toggle at the top right of the app where a user can switch between th
 # Pleae note:
 
 - This app is not designed to be mobile responsive.
-- This app is using two basic api endpoints with staic data.
-- Global state is managed with Recoil.js
+- This app is using two basic api endpoints with staic data so refreshing the app will reset the app to its starting state.
+- Global state is managed with Recoil.js.
 - No unit tests are added.
