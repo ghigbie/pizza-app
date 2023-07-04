@@ -1,0 +1,28 @@
+.cardWrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: #dabcaf;
+  border-color: #e25822;
+  border-radius: 1em;
+  min-width: 800px;
+}
+
+.cardTitle {
+  color: #e25822;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.toppingsContainer {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.editToppingsWrapper {
+  width: 200px;
+  margin-top: 1rem;
+}
+
+.noToppings {
+  text-align: center;
+}

@@ -1,0 +1,44 @@
+.cardWrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: #dabcaf;
+  border-color: #e25822;
+  border-radius: 1em;
+  min-width: 700px;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.centeredImage {
+  margin: 0 auto;
+}
+
+.centeredImage {
+  margin: 0 auto;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.cardTitle {
+  color: #e25822;
+  margin-right: 12px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.buttonStyles {
+  background-color: #e25822;
+  border-color: #e25822;
+}

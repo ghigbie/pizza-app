@@ -1,0 +1,24 @@
+.cardContainer {
+  margin-top: 2rem;
+  width: 200px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.toppingText {
+  font-size: 12px;
+}
+
+.smallButton {
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+}
+
+.noToppings {
+  text-align: center;
+}
