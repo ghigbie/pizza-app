@@ -1,85 +1,145 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
-import { Card, Button, Row, Col, Form, Toast } from 'react-bootstrap';
-import styles from './EditToppingsCard.module.scss';
+import { SetStateAction, useEffect, useState } from 'react';
+import { Row, Col, Form, Button } from 'react-bootstrap';
+import AppLayout from '@/components/AppLayout';
+import PageTitle from '@/components/PageTitle';
+import FormItemWrapper from '@/components/FormItemWrapper';
 import { useRecoilState } from 'recoil';
-import { toppingsState } from 'state/states';
+import { pizzasState, toppingsState } from 'state/states';
+import { PizzaSize } from '@/enums/enums';
+import { useRouter } from 'next/router';
+import { Pizza } from '@/interfaces/interfaces';
+import { v4 as uuidv4 } from 'uuid';
 
-const EditToppingsCard = () => {
-  const [toppingsList, setToppingsList] = useRecoilState(toppingsState);
-  const [newTopping, setNewTopping] = useState('');
-  const [error, setError] = useState('');
+function AddPizza() {
+  const router = useRouter();
+  const { id } = router.query;
+  const [pizzas, setPizzasState] = useRecoilState(pizzasState);
+  const [selectedPizza, setSelectedPizza] = useState<Pizza | null>(null);
+  const [possibleToppings] = useRecoilState(toppingsState);
+  const [selectedSize, setSelectedSize] = useState<PizzaSize>(PizzaSize.S);
+  const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
+  const [pizzaName, setPizzaName] = useState('');
 
-  const addNewTopping = (event: ChangeEvent<HTMLInputElement>) => {
-    const newToppingValue = event.target.value.trim();
-    setNewTopping(newToppingValue);
-    setError('');
-  };
+  useEffect(() => {
+    const fetchPizza = async () => {
+      if (pizzas) {
+        const pizza = pizzas.find((pizza) => pizza.id === id);
+        setSelectedPizza(pizza || null);
+      }
+    };
+    fetchPizza();
+  }, [id, pizzas]);
 
-  const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (toppingsList.includes(newTopping)) {
-      setError('Duplicate topping. Please enter a unique topping.');
-    } else {
-      const newList = toppingsList.concat(newTopping);
-      setToppingsList(newList);
-      setNewTopping('');
-      setError('');
+  useEffect(() => {
+    if (selectedPizza) {
+      setPizzaName(selectedPizza.name);
+      setSelectedSize(selectedPizza.size);
+      setSelectedToppings(selectedPizza.toppings);
     }
+  }, [selectedPizza]);
+
+  const handleSizeChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setSelectedSize(event.target.value as PizzaSize);
   };
 
-  const finalizeToppings = () => {
-    console.log('finalizeToppings called');
+  const handleToppingsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = event.target;
+    setSelectedToppings((prevSelectedToppings) => {
+      if (checked) {
+        return [...prevSelectedToppings, value];
+      } else {
+        return prevSelectedToppings.filter((topping) => topping !== value);
+      }
+    });
+  };
+
+  const handlePizzaNameChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setPizzaName(event.target.value);
+  };
+
+  const addPizza = () => {
+    const updatedPizzas = pizzas.concat({
+      id: uuidv4(),
+      name: pizzaName,
+      toppings: selectedToppings,
+      size: selectedSize,
+    });
+
+    setPizzasState(updatedPizzas);
+    router.push('/');
   };
 
   return (
-    <Card className={`${styles.cardWrapper} p-4`} style={{ width: '36rem' }}>
-      <Card.Body>
-        <h5 className={styles.cardTitle}>Add Toppings</h5>
+    <AppLayout>
+      <section className="py-5">
+        <PageTitle title="Modify your Pizza Masterpiece!" />
         <Row>
           <Col md={12}>
-            <Form onSubmit={handleOnSubmit}>
-              <Form.Group controlId="formPizzaName">
-                <Form.Label>Add your new topping here!</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Add a topping"
-                  value={newTopping}
-                  onChange={addNewTopping}
-                />
-                <Toast
-                  show={!!error}
-                  onClose={() => setError('')}
-                  className={`${styles.toast} ${styles.errorToast}`}
-                >
-                  <Toast.Header>
-                    <strong className="mr-auto">Error</strong>
-                  </Toast.Header>
-                  <Toast.Body>{error}</Toast.Body>
-                </Toast>
+            <Form>
+              <FormItemWrapper>
+                <Form.Group controlId="formPizzaName">
+                  <Form.Label>Give your pizza a beautiful name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder={selectedPizza?.name}
+                    value={pizzaName}
+                    onChange={handlePizzaNameChange}
+                  />
+                </Form.Group>
+              </FormItemWrapper>
+              <FormItemWrapper>
+                <Form.Group controlId="formPizzaSize">
+                  <Form.Label>Select Pizza Size:</Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={selectedSize}
+                    onChange={handleSizeChange}
+                  >
+                    <option value="">Choose...</option>
+                    <option value={PizzaSize.S}>{PizzaSize.S}</option>
+                    <option value={PizzaSize.M}>{PizzaSize.M}</option>
+                    <option value={PizzaSize.L}>{PizzaSize.L}</option>
+                    <option value={PizzaSize.X}>{PizzaSize.X}</option>
+                  </Form.Control>
+                </Form.Group>
+              </FormItemWrapper>
+              <FormItemWrapper>
+                <Form.Group controlId="formPizzaToppings">
+                  <Form.Label>Select Toppings:</Form.Label>
+                  {possibleToppings.map((topping) => (
+                    <Form.Check
+                      key={topping}
+                      type="checkbox"
+                      label={topping}
+                      value={topping}
+                      checked={selectedToppings.includes(topping)}
+                      onChange={handleToppingsChange}
+                    />
+                  ))}
+                </Form.Group>
+              </FormItemWrapper>
+              <FormItemWrapper>
                 <Button
-                  variant="success"
-                  type="submit"
-                  className="btn-custom mt-2"
+                  variant="primary"
+                  type="button"
+                  onClick={() => {
+                    addPizza();
+                  }}
+                  className="btn-custom"
                 >
-                  Add Topping
+                  Submit
                 </Button>
-              </Form.Group>
+              </FormItemWrapper>
             </Form>
           </Col>
-          <div className={`${styles.buttonContainer}`}>
-            <Button
-              variant="primary"
-              onClick={() => {
-                finalizeToppings();
-              }}
-            >
-              Finalize Toppings
-            </Button>
-          </div>
         </Row>
-      </Card.Body>
-    </Card>
+      </section>
+    </AppLayout>
   );
-};
+}
 
-export default EditToppingsCard;
+export default AddPizza;
