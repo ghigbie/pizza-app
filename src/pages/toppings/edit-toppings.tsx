@@ -31,17 +31,19 @@ const EditToppings = () => {
 
   return (
     <AppLayout>
-      <section className="py-4">
-        <Row className={`${styles.centeredContainer} mt-4`}>
-          <PageTitle title="Welcome Owner! Change the Available Toppings" />
-          <ViewToppingsCard toppings={toppingsList} />
-        </Row>
-      </section>
-      <section className={styles.bottomSection}>
-        <Row className={`${styles.centeredContainer} mt-1`}>
-          <AddToppingsCard />
-        </Row>
-      </section>
+      <div className={styles.editContainer}>
+        <section className="py-4">
+          <Row className={`${styles.centeredContainer} mt-4`}>
+            <PageTitle title="Welcome Owner! Change the Available Toppings" />
+            <ViewToppingsCard toppings={toppingsList} />
+          </Row>
+        </section>
+        <section className={styles.bottomSection}>
+          <Row className={`${styles.centeredContainer} mt-1`}>
+            <AddToppingsCard />
+          </Row>
+        </section>
+      </div>
     </AppLayout>
   );
 };
