@@ -7,6 +7,9 @@ import { nameState } from 'state/states';
 
 function ContactUsPage() {
   const [appName, setAppName] = useRecoilState(nameState);
+  const contactFiller = () => {
+    alert('Sorry, we are not accepting feedback at this time.');
+  };
   return (
     <AppLayout>
       <section className="py-5">
@@ -40,7 +43,13 @@ function ContactUsPage() {
                 </Form.Group>
               </FormItemWrapper>
             </Form>
-            <Button variant="primary" type="button">
+            <Button
+              variant="primary"
+              type="button"
+              onClick={() => {
+                contactFiller();
+              }}
+            >
               Submit
             </Button>
           </Col>
