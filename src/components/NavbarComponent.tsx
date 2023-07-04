@@ -1,4 +1,5 @@
-import { Container, Navbar, Nav, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import styles from './NavbarComponent.module.scss';
 import { PageOrderItem } from '../data/pageOrder';
@@ -12,18 +13,22 @@ interface NavbarComponentProps {
 const NavbarComponent = ({ pageOrder }: NavbarComponentProps) => {
   const [appName, setAppName] = useRecoilState(nameState);
   const router = useRouter();
+  const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
+
   return (
     <Navbar
       variant="dark"
       expand="lg"
       className={`d-flex justify-content-between ${styles.customContainer}`}
+      expanded={!isNavbarCollapsed}
+      onToggle={() => setIsNavbarCollapsed(!isNavbarCollapsed)}
     >
       <Container>
         <Navbar.Brand onClick={() => router.push('/')}>
           <div className={styles.brandContainer}>{appName}</div>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarSupportedContent" />
-        <Navbar.Collapse id="navbarSupportedContent">
+
+        <Navbar.Collapse id="navbarSupportedContent" in={!isNavbarCollapsed}>
           <Nav className="mr-auto">
             {pageOrder.map((pageOrderItem) => (
               <Nav.Link
@@ -40,6 +45,7 @@ const NavbarComponent = ({ pageOrder }: NavbarComponentProps) => {
             ))}
           </Nav>
         </Navbar.Collapse>
+
         <Nav className="mr-auto">
           <Nav.Link
             onClick={() => router.push('/')}
