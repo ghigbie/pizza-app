@@ -9,7 +9,7 @@ import { PizzaSize } from '@/enums/enums';
 import { useRouter } from 'next/router';
 import { Pizza } from '@/interfaces/interfaces';
 
-function EditPizza() {
+const EditPizza = () => {
   const router = useRouter();
   const { id } = router.query;
   const [pizzas, setPizzasState] = useRecoilState(pizzasState);
@@ -19,13 +19,14 @@ function EditPizza() {
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
   const [pizzaName, setPizzaName] = useState('');
 
+  const fetchPizza = async () => {
+    if (pizzas) {
+      const pizza = pizzas.find((pizza) => pizza.id === id);
+      setSelectedPizza(pizza || null);
+    }
+  };
+
   useEffect(() => {
-    const fetchPizza = async () => {
-      if (pizzas) {
-        const pizza = pizzas.find((pizza) => pizza.id === id);
-        setSelectedPizza(pizza || null);
-      }
-    };
     fetchPizza();
   }, [id, pizzas]);
 
@@ -143,6 +144,6 @@ function EditPizza() {
       </section>
     </AppLayout>
   );
-}
+};
 
 export default EditPizza;
