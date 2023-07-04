@@ -33,27 +33,29 @@ const About = () => {
               ingredients for our toppings. From locally sourced vegetables
               bursting with flavor to premium meats and artisanal cheeses, we
               strive to create unique and mouthwatering combinations that will
-              tantalize your taste buds. Whether you're a fan of classic
+              tantalize your taste buds. Whether you&apos;re a fan of classic
               Margherita or crave bold and adventurous flavor profiles, our menu
               offers a wide range of options to satisfy every pizza lover.
             </p>
             <p>
-              But it's not just about the pizza itself; it's about the entire
-              experience. Step into {appName} and you'll be greeted by a warm
-              and inviting atmosphere. Our friendly staff is passionate about
-              providing exceptional service, making you feel right at home as
-              you indulge in our pizza creations. Whether you're dining in with
-              family and friends or grabbing a quick slice on the go, we ensure
-              that every visit to {appName} is a memorable one.
+              But it&apos;s not just about the pizza itself; it&apos;s about the
+              entire experience. Step into {appName} and you&apos;ll be greeted
+              by a warm and inviting atmosphere. Our friendly staff is
+              passionate about providing exceptional service, making you feel
+              right at home as you indulge in our pizza creations. Whether
+              you&apos;re dining in with family and friends or grabbing a quick
+              slice on the go, we ensure that every visit to {appName} is a
+              memorable one.
             </p>
             <p>
-              But it's not just about the pizza itself; it's about the entire
-              experience. Step into {appName} and you'll be greeted by a warm
-              and inviting atmosphere. Our friendly staff is passionate about
-              providing exceptional service, making you feel right at home as
-              you indulge in our pizza creations. Whether you're dining in with
-              family and friends or grabbing a quick slice on the go, we ensure
-              that every visit to {appName} is a memorable one.
+              But it&apos;s not just about the pizza itself; it&apos;s about the
+              entire experience. Step into {appName} and you&apos;ll be greeted
+              by a warm and inviting atmosphere. Our friendly staff is
+              passionate about providing exceptional service, making you feel
+              right at home as you indulge in our pizza creations. Whether
+              you&apos;re dining in with family and friends or grabbing a quick
+              slice on the go, we ensure that every visit to {appName} is a
+              memorable one.
             </p>
             <p>Buon appetito!</p>
           </Col>
