@@ -8,7 +8,7 @@ import { pizzasState, toppingsState } from 'state/states';
 import { PizzaSize } from '@/enums/enums';
 import { useRouter } from 'next/router';
 import { Pizza } from '@/interfaces/interfaces';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-uuid';
 
 function AddPizza() {
   const router = useRouter();
@@ -63,7 +63,7 @@ function AddPizza() {
 
   const addPizza = () => {
     const updatedPizzas = pizzas.concat({
-      id: uuidv4(),
+      id: uuid(),
       name: pizzaName,
       toppings: selectedToppings,
       size: selectedSize,
