@@ -1,4 +1,4 @@
-import { Card, Image, Button, ButtonGroup } from 'react-bootstrap';
+import { Card, Image, Button, ButtonGroup, Col } from 'react-bootstrap';
 import { useState } from 'react';
 import styles from './ViewToppingsCard.module.scss';
 
@@ -35,68 +35,70 @@ const EditToppingCard = ({
   };
 
   return (
-    <Card className={styles.cardContainer}>
-      <Card.Body className="d-flex flex-column align-items-center">
-        <Image
-          src="/images/pizza_toppings.png"
-          alt={topping}
-          thumbnail
-          style={{ width: '100px', height: '100px' }}
-        />
-        <div className={styles.buttonContainer}>
-          <div className={`float-left ${styles.toppingText}`}>
-            {editing ? (
-              <div className="mt-2">
-                <input
-                  type="text"
-                  value={updatedTopping}
-                  onChange={handleChange}
-                />
-              </div>
-            ) : (
-              <div className="mt-2">{topping}</div>
-            )}
-            <ButtonGroup>
+    <Col className={styles.editToppingsWrapper}>
+      <Card className={styles.cardContainer}>
+        <Card.Body className="d-flex flex-column align-items-center">
+          <Image
+            src="/images/pizza_toppings.png"
+            alt={topping}
+            thumbnail
+            style={{ width: '100px', height: '100px' }}
+          />
+          <div className={styles.buttonContainer}>
+            <div className={`float-left ${styles.toppingText}`}>
               {editing ? (
-                <>
+                <div className="mt-2">
+                  <input
+                    type="text"
+                    value={updatedTopping}
+                    onChange={handleChange}
+                  />
+                </div>
+              ) : (
+                <div className="mt-2">{topping}</div>
+              )}
+              <ButtonGroup>
+                {editing ? (
+                  <>
+                    <Button
+                      variant="success"
+                      className={`btn ${styles.smallButton}`}
+                      onClick={handleSaveClick}
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      variant="danger"
+                      className={`btn ${styles.smallButton}`}
+                      onClick={handleCancelClick}
+                    >
+                      Cancel
+                    </Button>
+                  </>
+                ) : (
                   <Button
                     variant="success"
                     className={`btn ${styles.smallButton}`}
-                    onClick={handleSaveClick}
+                    onClick={handleEditClick}
                   >
-                    Save
+                    Edit
                   </Button>
-                  <Button
-                    variant="danger"
-                    className={`btn ${styles.smallButton}`}
-                    onClick={handleCancelClick}
-                  >
-                    Cancel
-                  </Button>
-                </>
-              ) : (
+                )}
                 <Button
-                  variant="success"
+                  variant="danger"
                   className={`btn ${styles.smallButton}`}
-                  onClick={handleEditClick}
+                  onClick={() => {
+                    removeTopping(topping);
+                  }}
                 >
-                  Edit
+                  Delete
                 </Button>
-              )}
-              <Button
-                variant="danger"
-                className={`btn ${styles.smallButton}`}
-                onClick={() => {
-                  removeTopping(topping);
-                }}
-              >
-                Delete
-              </Button>
-            </ButtonGroup>
+              </ButtonGroup>
+            </div>
           </div>
-        </div>
-      </Card.Body>
-    </Card>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 };
 

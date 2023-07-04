@@ -33,14 +33,12 @@ const ViewToppingsCard = ({ toppings }: ToppingsViewCardProps) => {
         {toppings?.length > 0 ? (
           <Row className={styles.toppingsContainer}>
             {toppings.map((topping, index) => (
-              <Col className={styles.editToppingsWrapper}>
-                <EditToppingCard
-                  key={index}
-                  topping={topping}
-                  removeTopping={removeTopping}
-                  editTopping={editTopping}
-                />
-              </Col>
+              <EditToppingCard
+                key={index}
+                topping={topping}
+                removeTopping={removeTopping}
+                editTopping={editTopping}
+              />
             ))}
           </Row>
         ) : (
