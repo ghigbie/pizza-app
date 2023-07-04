@@ -28,10 +28,6 @@ const AddToppingsCard = () => {
     }
   };
 
-  const finalizeToppings = () => {
-    console.log('finalizeToppings called');
-  };
-
   return (
     <Card className={`${styles.cardWrapper} p-4`} style={{ width: '36rem' }}>
       <Card.Body>
@@ -60,16 +56,6 @@ const AddToppingsCard = () => {
               </FormItemWrapper>
             </Form>
           </Col>
-          <div className={`${styles.buttonContainer}`}>
-            <Button
-              variant="primary"
-              onClick={() => {
-                finalizeToppings();
-              }}
-            >
-              Finalize Toppings
-            </Button>
-          </div>
         </Row>
       </Card.Body>
     </Card>
