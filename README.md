@@ -1,6 +1,6 @@
 # Pizza Paradise
 
-This is a project built in Next.js, React Bootstrap
+This is a project built in Typescript, Next.js, React Bootstrap.
 
 ## Getting Started
 
@@ -16,8 +16,13 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+# To Test Features:
+
+There is a toggle at the top right of the app where a user can switch between the "chef" and "owner" portals.
+
 # Pleae note:
 
 - This app is not designed to be mobile responsive.
 - This app is using two basic api endpoints with staic data.
 - Global state is managed with Recoil.js
+- No unit tests are added.
