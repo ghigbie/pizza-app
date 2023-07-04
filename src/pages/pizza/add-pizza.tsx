@@ -20,31 +20,19 @@ function AddPizza() {
   const [selectedToppings, setSelectedToppings] = useState<string[]>([]);
   const [pizzaName, setPizzaName] = useState('');
 
-  useEffect(() => {
-    const fetchPizza = async () => {
-      if (pizzas) {
-        const pizza = pizzas.find((pizza) => pizza.id === id);
-        setSelectedPizza(pizza || null);
-      }
-    };
-    fetchPizza();
-  }, [id, pizzas]);
+  const addPizzaName = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setPizzaName(event.target.value);
+  };
 
-  useEffect(() => {
-    if (selectedPizza) {
-      setPizzaName(selectedPizza.name);
-      setSelectedSize(selectedPizza.size);
-      setSelectedToppings(selectedPizza.toppings);
-    }
-  }, [selectedPizza]);
-
-  const handleSizeChange = (event: {
+  const addPizzaSize = (event: {
     target: { value: SetStateAction<string> };
   }) => {
     setSelectedSize(event.target.value as PizzaSize);
   };
 
-  const handleToppingsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const addPizzaToppings = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
     setSelectedToppings((prevSelectedToppings) => {
       if (checked) {
@@ -55,13 +43,16 @@ function AddPizza() {
     });
   };
 
-  const handlePizzaNameChange = (event: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setPizzaName(event.target.value);
-  };
-
   const addPizza = () => {
+    const duplicatePizza = pizzas.find(
+      (pizza) => pizza.name === pizzaName && pizza.id !== id
+    );
+
+    if (duplicatePizza) {
+      alert('This pizza already exists. Please choose a different name.');
+      return;
+    }
+
     const updatedPizzas = pizzas.concat({
       id: uuid(),
       name: pizzaName,
@@ -87,7 +78,7 @@ function AddPizza() {
                     type="text"
                     placeholder={selectedPizza?.name}
                     value={pizzaName}
-                    onChange={handlePizzaNameChange}
+                    onChange={addPizzaName}
                   />
                 </Form.Group>
               </FormItemWrapper>
@@ -97,7 +88,7 @@ function AddPizza() {
                   <Form.Control
                     as="select"
                     value={selectedSize}
-                    onChange={handleSizeChange}
+                    onChange={addPizzaSize}
                   >
                     <option value="">Choose...</option>
                     <option value={PizzaSize.S}>{PizzaSize.S}</option>
@@ -117,7 +108,7 @@ function AddPizza() {
                       label={topping}
                       value={topping}
                       checked={selectedToppings.includes(topping)}
-                      onChange={handleToppingsChange}
+                      onChange={addPizzaToppings}
                     />
                   ))}
                 </Form.Group>
