@@ -1,6 +1,5 @@
 import { Pizza } from '@/interfaces/interfaces';
 import { PizzaSauce, PizzaSize } from '@/enums/enums';
-import { v4 as uuidv4 } from 'uuid';
 
 export const stratingToppings = [
   'Chicken',
