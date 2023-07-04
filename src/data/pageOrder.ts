@@ -7,21 +7,16 @@ export interface PageOrderItem {
 export const pageOrderArray: Array<PageOrderItem> = [
   {
     id: 0,
-    name: 'Home',
-    route: '/',
-  },
-  {
-    id: 1,
     name: 'Our Team',
     route: 'team',
   },
   {
-    id: 2,
+    id: 1,
     name: 'About',
     route: 'about',
   },
   {
-    id: 3,
+    id: 2,
     name: 'Contact Us',
     route: 'contact',
   },
