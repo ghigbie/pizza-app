@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 # To Test Features:
 
-There is a toggle at the top right of the app where a user can switch between the "chef" and "owner" portals.
+There is a toggle at the top right of the app where a user can switch between the "chef" and "owner" portals. The chef portal is the default view.
 
 # Pleae note:
 
