@@ -1,7 +1,9 @@
+@import '@/styles/globals';
+
 .contentContainer {
   position: relative;
   width: 100%;
   height: 120%;
   min-height: 900px;
-  background-color: #f7c4ae;
+  background-color: $secondary-color;
 }
