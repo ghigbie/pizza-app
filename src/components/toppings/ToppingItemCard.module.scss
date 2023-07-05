@@ -1,11 +1,11 @@
 .editToppingsWrapper {
   width: 200px;
   max-width: 240px;
-  margin-top: 1rem;
+  margin-top: $common-margin;
 }
 
 .cardContainer {
-  margin-top: 2rem;
+  margin-top: $heavy-margin;
   width: 216px;
   max-width: 216px;
 }
@@ -18,12 +18,12 @@
 }
 
 .toppingText {
-  font-size: 12px;
+  font-size: $common-font;
 }
 
 .smallButton {
   padding: 0.25rem 0.5rem;
-  font-size: 12px;
+  font-size: $common-font;
 }
 
 .noToppings {

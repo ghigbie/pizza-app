@@ -1,8 +1,10 @@
+@import '@/styles/globals';
+
 .cardWrapper {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  background-color: #dabcaf;
-  border-color: #e25822;
+  margin-top: $heavy-margin;
+  margin-bottom: $heavy-margin;
+  background-color: $secondary-color;
+  border-color: $primary-color;
   border-radius: 1em;
   min-width: 800px;
 }

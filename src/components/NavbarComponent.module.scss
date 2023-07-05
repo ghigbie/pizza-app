@@ -1,3 +1,5 @@
+@import '@/styles/globals';
+
 .brandContainer {
   display: flex;
   flex-direction: row;
@@ -7,7 +9,7 @@
 }
 
 .customContainer {
-  background-color: #e25822;
+  background-color: $primary-color;
   position: fixed;
   top: 0;
   left: 0;
