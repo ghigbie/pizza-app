@@ -34,7 +34,9 @@ const PizzaCard: React.FC<PizzaCardProps> = ({ pizza }) => {
       <Card.Body>
         <div className={styles.cardTitle}>
           <h5 className={styles.cardTitle}>{name}</h5>
-          <h6 className={`${styles.cardTitle} text-muted`}>{id}</h6>
+          <h6 className={`${styles.cardTitle} text-muted`}>
+            Order Number: {id}
+          </h6>
         </div>
         <div className="mt-2 card-text">Size: {size}</div>
         {toppings?.length > 0 ? (

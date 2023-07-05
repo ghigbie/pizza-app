@@ -4,6 +4,7 @@ import styles from './AddToppingsCard.module.scss';
 import FormItemWrapper from '../FormItemWrapper';
 import { useRecoilState } from 'recoil';
 import { toppingsState } from 'state/states';
+import router from 'next/router';
 
 const AddToppingsCard = () => {
   const [toppingsList, setToppingsList] = useRecoilState(toppingsState);
@@ -57,6 +58,11 @@ const AddToppingsCard = () => {
             </Form>
           </Col>
         </Row>
+        <div className={styles.buttonContainer}>
+          <Button variant="primary" onClick={() => router.replace('/')}>
+            Done
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );
