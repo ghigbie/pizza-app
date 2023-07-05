@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Navbar, Nav } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import styles from './NavbarComponent.module.scss';
@@ -15,6 +15,10 @@ const NavbarComponent = ({ pageOrder }: NavbarComponentProps) => {
   const router = useRouter();
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
 
+  useEffect(() => {
+    setIsNavbarCollapsed(true); // Reset the collapse state on pathname change
+  }, [router.pathname]);
+
   return (
     <Navbar
       variant="dark"
@@ -24,7 +28,7 @@ const NavbarComponent = ({ pageOrder }: NavbarComponentProps) => {
       onToggle={() => setIsNavbarCollapsed(!isNavbarCollapsed)}
     >
       <Container>
-        <Navbar.Brand onClick={() => router.push('/')}>
+        <Navbar.Brand onClick={() => router.replace('/')}>
           <div className={styles.brandContainer}>{appName}</div>
         </Navbar.Brand>
 
@@ -33,7 +37,7 @@ const NavbarComponent = ({ pageOrder }: NavbarComponentProps) => {
             {pageOrder.map((pageOrderItem) => (
               <Nav.Link
                 key={pageOrderItem.id}
-                onClick={() => router.push(pageOrderItem.route)}
+                onClick={() => router.replace(pageOrderItem.route)}
                 className={
                   router.pathname.slice(1) === pageOrderItem.route
                     ? 'active'
@@ -48,13 +52,13 @@ const NavbarComponent = ({ pageOrder }: NavbarComponentProps) => {
 
         <Nav className="mr-auto">
           <Nav.Link
-            onClick={() => router.push('/')}
+            onClick={() => router.replace('/')}
             className={router.pathname === '/' ? 'active' : ''}
           >
             Chef Portal
           </Nav.Link>
           <Nav.Link
-            onClick={() => router.push('/toppings/edit-toppings')}
+            onClick={() => router.replace('/toppings/edit-toppings')}
             className={router.pathname.includes('toppings') ? 'active' : ''}
           >
             Owner Portal
