@@ -16,7 +16,7 @@ const NavbarComponent = ({ pageOrder }: NavbarComponentProps) => {
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(true);
 
   useEffect(() => {
-    setIsNavbarCollapsed(true); // Reset the collapse state on pathname change
+    setIsNavbarCollapsed(true);
   }, [router.pathname]);
 
   return (

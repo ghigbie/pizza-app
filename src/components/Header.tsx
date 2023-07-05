@@ -1,6 +1,6 @@
 import NavbarComponent from './NavbarComponent';
 import styles from './Header.module.scss';
-import { pageOrderArray } from '@/data//pageOrder';
+import { pageOrderArray } from '@/data/pageOrder';
 import { useRecoilState } from 'recoil';
 import { nameState } from 'state/states';
 
