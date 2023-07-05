@@ -41,7 +41,9 @@ const Index = () => {
           <Col className={styles.centeredContainer} md={12}>
             <div className={`${styles.buttonContainer}`}>
               <Nav.Link onClick={() => router.push('/pizza/add-pizza')}>
-                <Button variant="primary">Add a New Pizza Masterpiece!</Button>
+                <Button variant="primary">
+                  Create a New Pizza Masterpiece!
+                </Button>
               </Nav.Link>
             </div>
             {pizzaList.map((pizza) => (
